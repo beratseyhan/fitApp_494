@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitappson/achievements.dart';
+import 'package:fitappson/deneme.dart';
 import 'package:fitappson/exercises.dart';
+import 'package:fitappson/profilePhoto.dart';
 import 'Login_Page.dart';
 import 'Progress_Page.dart';
 import 'afterSingUp_Finish.dart';
@@ -18,6 +21,8 @@ import 'contants.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
+String url;
+
 class homePage extends StatefulWidget {
   @override
   @override
@@ -30,6 +35,7 @@ class _homePageState extends State<homePage> {
   int photo;
   int levelint;
 
+  var deneme;
   String userMail;
 //  final deneme = Firestore.instance;
   void changePage(int index) {
@@ -40,13 +46,13 @@ class _homePageState extends State<homePage> {
 
   String _userEmail;
 
-  _getUserAuthEmail() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    setState(() {
-      _userEmail = user.email;
-      print('object deneme $email');
-    });
-  }
+//  _getUserAuthEmail() async {
+//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+//    setState(() {
+//      _userEmail = user.email;
+//      print('object deneme $email');
+//    });
+//  }
 
   final _fireStore = Firestore.instance;
   void getData() async {
@@ -56,6 +62,40 @@ class _homePageState extends State<homePage> {
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((f) => print('${f.data}}'));
+      snapshot.documents.forEach((f) {
+        deneme = f.data["gender"];
+        url = f.data["url"];
+        levelint = int.parse(f.data["activityLevel"]);
+        print('$url');
+        print('$levelint');
+      });
+    });
+  }
+
+  _getUserAuthEmail() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    setState(() {
+      _userEmail = user.email;
+      print('object deneme $email');
+
+      try {
+        databaseReference
+            .collection('profile')
+            .document('$_userEmail')
+            .updateData({
+          'activities': {
+            'Walking': 'asdda',
+            'ShoulderExercises': 'sd',
+            'ArmExercises': '1111',
+            'SixPackExercises': '22222',
+            'LegExercises': '4444',
+            'ChestExercises': '7777777',
+            'BackExercises': '10010231'
+          }
+        });
+      } catch (e) {
+        print(e.toString());
+      }
     });
   }
 
@@ -85,7 +125,7 @@ class _homePageState extends State<homePage> {
                       iconImageName: 'images/back_icon.png',
                       click: () {
                         //  abc();
-
+                        _getUserAuthEmail();
                         getData();
                         Navigator.push(
                           context,
@@ -105,21 +145,34 @@ class _homePageState extends State<homePage> {
                       SizedBox(
                         width: 20,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: my_Iconbutton_Profile(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                          height:
-                              MediaQuery.of(context).size.height * 0.15 * 0.8,
-                          click: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => profile_Page()),
-                            );
-                          },
-                        ),
-                      ),
+//                      Expanded(
+//                        flex: 1,
+//                        child: Container(
+//                            width: 150.0,
+//                            height: 150.0,
+//                            decoration: BoxDecoration(
+//                                image: DecorationImage(
+//                                    image: NetworkImage('$url'),
+//                                    fit: BoxFit.cover),
+//                                borderRadius:
+//                                    BorderRadius.all(Radius.circular(75.0)),
+//                                boxShadow: [
+//                                  BoxShadow(
+//                                      blurRadius: 7.0, color: Colors.black)
+//                                ])),
+////                        child: my_Iconbutton_Profile(
+////                          width: MediaQuery.of(context).size.width * 0.1,
+////                          height:
+////                              MediaQuery.of(context).size.height * 0.15 * 0.8,
+////                          click: () {
+////                            Navigator.push(
+////                              context,
+////                              MaterialPageRoute(
+////                                  builder: (context) => achievements()),
+////                            );
+////                          },
+////                        ),
+//                      ),
                       Expanded(
                           flex: 2,
                           child: Container(
@@ -147,7 +200,7 @@ class _homePageState extends State<homePage> {
                                             textAlign: TextAlign.center,
                                           ),
                                           new Text(
-                                            date["brith"],
+                                            date["gender"],
                                             style: kNormalLabelTextStyle,
                                             textAlign: TextAlign.center,
                                           ),

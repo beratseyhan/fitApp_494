@@ -41,6 +41,32 @@ class _afterSingUp_1State extends State<afterSingUp_1> {
       }
     });
   }
+//  _getUserAuthEmail() async {
+//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+//    setState(() {
+//      _userEmail = user.email;
+//      print('object deneme $email');
+//
+//      try {
+//        databaseReference
+//            .collection('profile')
+//            .document('$_userEmail')
+//            .updateData({
+//          'activities': {
+//            'Walking': 'asdda',
+//            'ShoulderExercises': 'sd',
+//            'ArmExercises': '1111',
+//            'SixPackExercises': '22222',
+//            'LegExercises': '4444',
+//            'ChestExercises': '7777777',
+//            'BackExercises': '10010231'
+//          }
+//        });
+//      } catch (e) {
+//        print(e.toString());
+//      }
+//    });
+//  }
 
   void updateData() {
     try {
@@ -153,6 +179,7 @@ class _afterSingUp_1State extends State<afterSingUp_1> {
 
                         //  updateData();
 //                        updateData();
+
                         _getUserAuthEmail();
                         Navigator.push(
                           context,

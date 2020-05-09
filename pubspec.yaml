@@ -23,6 +23,8 @@ dependencies:
   firebase_core: ^0.4.4+3
   auto_size_text: ^2.1.0
   modal_progress_hud: ^0.1.3
+  firebase_storage: ^3.1.5
+  image_picker: ^0.6.5+2
   flutter:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.
@@ -48,6 +50,16 @@ flutter:
 
 
   assets:
+    - images/Achievements/1.PNG
+    - images/Achievements/2.PNG
+    - images/Achievements/3.PNG
+    - images/Achievements/4.PNG
+    - images/Achievements/5.PNG
+    - images/Achievements/6.PNG
+    - images/Achievements/7.PNG
+    - images/Achievements/8.PNG
+    - images/Achievements/9.PNG
+    - images/Achievements/10.PNG
     - images/finish0.jpg
     - images/finish1.jpg
 

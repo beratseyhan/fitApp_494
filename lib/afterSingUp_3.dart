@@ -17,6 +17,7 @@ enum DistanceType {
   cm,
   fit,
 }
+
 int height;
 DistanceType selectedDistance = DistanceType.cm;
 String str = 'Cm';
@@ -32,6 +33,29 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Start FitApp"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   _getUserAuthEmail() async {
@@ -186,12 +210,18 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
                 WelcomePageButton(
                     buttonTitle: 'Next',
                     click: () {
-                      _getUserAuthEmail();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => afterSingUp_4()),
-                      );
+                      if (height != null) {
+                        _getUserAuthEmail();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => afterSingUp_4()),
+                        );
+                        print('$height');
+                      } else {
+                        _showDialog();
+                        print('tekrar');
+                      }
                     },
                     buttonColor: kActiveCardColor)
               ],

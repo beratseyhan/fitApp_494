@@ -44,6 +44,29 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
     });
   }
 
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Start FitApp"),
+          content: new Text("please fill the form"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   int weight;
 
   @override
@@ -183,12 +206,18 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
                 WelcomePageButton(
                     buttonTitle: 'Next',
                     click: () {
-                      _getUserAuthEmail();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => afterSingUp_5()),
-                      );
+                      if (weight != null) {
+                        _getUserAuthEmail();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => afterSingUp_5()),
+                        );
+                        print('$height');
+                      } else {
+                        _showDialog();
+                        print('tekrar');
+                      }
                     },
                     buttonColor: kActiveCardColor)
               ],
