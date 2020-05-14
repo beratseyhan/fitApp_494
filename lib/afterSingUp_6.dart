@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
+import 'Login_Page.dart';
 import 'afterSingUp_5.dart';
 import 'afterSingUp_Finish.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,8 +18,10 @@ class afterSingUp_6 extends StatefulWidget {
 
 class _afterSingUp_6State extends State<afterSingUp_6> {
   int level = 2;
+  double _bmi;
   final databaseReference = Firestore.instance;
   String _userEmail;
+
   _getUserAuthEmail() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
@@ -31,6 +36,16 @@ class _afterSingUp_6State extends State<afterSingUp_6> {
         print(e.toString());
       }
     });
+  }
+
+  void calculateBMI() {
+    print('$weight');
+    print('$height');
+    print('$gender');
+    print('$height');
+    print('$actvityLevel');
+    _bmi = weight / pow(height / 100, 2);
+    print('your bmi : $_bmi');
   }
 
   @override
@@ -161,6 +176,7 @@ class _afterSingUp_6State extends State<afterSingUp_6> {
                     WelcomePageButton(
                         buttonTitle: 'Next',
                         click: () {
+                          calculateBMI();
                           _getUserAuthEmail();
                           Navigator.push(
                             context,

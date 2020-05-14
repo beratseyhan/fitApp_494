@@ -1,8 +1,15 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:fitappson/homePage.dart';
 
 import 'WelcomePage.dart';
 import 'afterSingUp_1.dart';
 
+import 'afterSingUp_6.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'contants.dart';
@@ -10,6 +17,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 String email;
+String name;
+String gender;
+String brith;
+int actvityLevel;
+int height;
+int weight;
+String url;
+int score;
+int activityLevel;
+double _bmi;
+void getProfileData() async {
+  dbReference
+      .collection("profile")
+      .where("e-mail", isEqualTo: "$email")
+      .getDocuments()
+      .then((QuerySnapshot snapshot) {
+    snapshot.documents.forEach((f) => print('${f.data}}'));
+    snapshot.documents.forEach((profileData) {
+      gender = profileData.data["gender"];
+      url = profileData.data["url"];
+      name = profileData.data["name"];
+      score = profileData.data["score"];
+      height = int.parse(profileData.data['height']);
+      weight = int.parse(profileData.data["weight"]);
+      actvityLevel = int.parse(profileData.data["activityLevel"]);
+      print('$url');
+    });
+  });
+}
+
+final dbReference = Firestore.instance;
 
 class Login_Page extends StatefulWidget {
   @override
@@ -124,10 +162,14 @@ class _Login_PageState extends State<Login_Page> {
                                         email: email, password: password);
 
                                 if (_user != null) {
+                                  getProfileData();
+                                  print('$weight');
+                                  print('$height');
+                                  print('score : $score');
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => afterSingUp_1()),
+                                        builder: (context) => afterSingUp_6()),
                                   );
                                 }
                               } catch (e) {

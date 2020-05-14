@@ -213,7 +213,6 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
                           MaterialPageRoute(
                               builder: (context) => afterSingUp_5()),
                         );
-                        print('$height');
                       } else {
                         _showDialog();
                         print('tekrar');

@@ -1,11 +1,12 @@
-import 'dart:async';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitappson/Leaderboard.dart';
+import 'package:fitappson/a.dart';
 import 'package:fitappson/achievements.dart';
 import 'package:fitappson/deneme.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/profilePhoto.dart';
+import 'package:fitappson/score.dart';
 import 'Login_Page.dart';
 import 'Progress_Page.dart';
 import 'afterSingUp_Finish.dart';
@@ -21,8 +22,6 @@ import 'contants.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
-String url;
-
 class homePage extends StatefulWidget {
   @override
   @override
@@ -37,7 +36,7 @@ class _homePageState extends State<homePage> {
 
   var deneme;
   String userMail;
-//  final deneme = Firestore.instance;
+
   void changePage(int index) {
     setState(() {
       _selectedIndex = index;
@@ -46,68 +45,7 @@ class _homePageState extends State<homePage> {
 
   String _userEmail;
 
-//  _getUserAuthEmail() async {
-//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-//    setState(() {
-//      _userEmail = user.email;
-//      print('object deneme $email');
-//    });
-//  }
-
   final _fireStore = Firestore.instance;
-  void getData() async {
-    databaseReference
-        .collection("profile")
-        .where("e-mail", isEqualTo: "$email")
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((f) => print('${f.data}}'));
-      snapshot.documents.forEach((f) {
-        deneme = f.data["gender"];
-        url = f.data["url"];
-        levelint = int.parse(f.data["activityLevel"]);
-        print('$url');
-        print('$levelint');
-      });
-    });
-  }
-
-  _getUserAuthEmail() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    setState(() {
-      _userEmail = user.email;
-      print('object deneme $email');
-
-      try {
-        databaseReference
-            .collection('profile')
-            .document('$_userEmail')
-            .updateData({
-          'activities': {
-            'Walking': 'asdda',
-            'ShoulderExercises': 'sd',
-            'ArmExercises': '1111',
-            'SixPackExercises': '22222',
-            'LegExercises': '4444',
-            'ChestExercises': '7777777',
-            'BackExercises': '10010231'
-          }
-        });
-      } catch (e) {
-        print(e.toString());
-      }
-    });
-  }
-
-//  void abc() async {
-//    final profile = await deneme
-//        .collection('profile')
-//        .where("e-mail", isEqualTo: "$email")
-//        .getDocuments();
-//    for (var profile in profile.documents) {
-//      print(profile.data);
-//    }
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +63,10 @@ class _homePageState extends State<homePage> {
                       iconImageName: 'images/back_icon.png',
                       click: () {
                         //  abc();
-                        _getUserAuthEmail();
-                        getData();
+//                        leaderBord()
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => afterSingUp_Finish()),
+                          MaterialPageRoute(builder: (context) => hareketler()),
                         );
                       },
                     ),
@@ -145,8 +81,8 @@ class _homePageState extends State<homePage> {
                       SizedBox(
                         width: 20,
                       ),
-//                      Expanded(
-//                        flex: 1,
+                      Expanded(
+                        flex: 1,
 //                        child: Container(
 //                            width: 150.0,
 //                            height: 150.0,
@@ -160,55 +96,36 @@ class _homePageState extends State<homePage> {
 //                                  BoxShadow(
 //                                      blurRadius: 7.0, color: Colors.black)
 //                                ])),
-////                        child: my_Iconbutton_Profile(
-////                          width: MediaQuery.of(context).size.width * 0.1,
-////                          height:
-////                              MediaQuery.of(context).size.height * 0.15 * 0.8,
-////                          click: () {
-////                            Navigator.push(
-////                              context,
-////                              MaterialPageRoute(
-////                                  builder: (context) => achievements()),
-////                            );
-////                          },
-////                        ),
-//                      ),
+                        child: my_Iconbutton_Profile(
+                          width: MediaQuery.of(context).size.width * 0.1,
+                          height:
+                              MediaQuery.of(context).size.height * 0.15 * 0.8,
+                          click: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => achievements()),
+                            );
+                          },
+                        ),
+                      ),
                       Expanded(
                           flex: 2,
                           child: Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                StreamBuilder(
-                                    stream: Firestore.instance
-                                        .collection('profile')
-                                        .document('$email')
-                                        .snapshots(),
-                                    builder: (context, snapshot) {
-                                      if (!snapshot.hasData) {
-                                        return new Text("Loading");
-                                      }
-                                      var username = snapshot.data;
-
-                                      var date = snapshot.data;
-
-                                      return Column(
-                                        children: <Widget>[
-                                          new Text(
-                                            username["name"],
-                                            style: kNormalLabelTextStyle,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          new Text(
-                                            date["gender"],
-                                            style: kNormalLabelTextStyle,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      );
-                                    }),
+                                Column(
+                                  children: <Widget>[
+                                    new Text(
+                                      "$name",
+                                      style: kNormalLabelTextStyle,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                                 Text(
-                                  'Lets get Exercise',
+                                  '$score',
                                   style: kNormalLabelTextStyle,
                                   textAlign: TextAlign.center,
                                 ),
@@ -223,12 +140,12 @@ class _homePageState extends State<homePage> {
                             shape: CircleBorder(),
                           ),
                           child: IconButton(
-                            iconSize:
-                                MediaQuery.of(context).size.height * 0.15 * 0.5,
-                            icon: Image.asset('images/bell.png'),
-                            color: Colors.white,
-                            onPressed: null,
-                          ),
+                              iconSize: MediaQuery.of(context).size.height *
+                                  0.15 *
+                                  0.5,
+                              icon: Image.asset('images/bell.png'),
+                              color: Colors.white,
+                              onPressed: null),
                         ),
                       )
                     ],

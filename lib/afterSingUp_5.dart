@@ -1,3 +1,8 @@
+import 'dart:math';
+
+import 'package:fitappson/Login_Page.dart';
+import 'package:fitappson/afterSingUp_3.dart';
+
 import 'afterSingUp_4.dart';
 import 'afterSingUp_6.dart';
 import 'package:flutter/material.dart';

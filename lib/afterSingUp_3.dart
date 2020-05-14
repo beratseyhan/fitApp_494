@@ -18,22 +18,13 @@ enum DistanceType {
   fit,
 }
 
-int height;
 DistanceType selectedDistance = DistanceType.cm;
 String str = 'Cm';
 
 class _afterSingUp_3State extends State<afterSingUp_3> {
+  int height;
   @override
-  void updateData() {
-    try {
-      databaseReference
-          .collection('profile')
-          .document('$email')
-          .updateData({'height': '$height'});
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+//
 
   void _showDialog() {
     // flutter defined function
@@ -183,7 +174,7 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
                           textInputAction: TextInputAction.done,
                           style: kNormalLabelTextStyle,
                           textAlign: TextAlign.center,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.number,
                           maxLength: 3,
                         ),
                       ),
