@@ -1,3 +1,4 @@
+import 'add.dart';
 import 'afterSingUp_1.dart';
 import 'afterSingUp_6.dart';
 import 'contants.dart';
@@ -6,6 +7,8 @@ import 'Login_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+String creatAccount_email;
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -17,10 +20,9 @@ class _CreateAccountState extends State<CreateAccount> {
   final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
   String name;
-  String email;
   String password;
   String rePassword;
-
+  int zer = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +68,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                           TextField_CreateAccount(
                             onChangeValue: (value) {
-                              email = value;
+                              creatAccount_email = value;
                             },
                             inputType: TextInputType.emailAddress,
                             fildText: 'Enter E-mail',
@@ -108,15 +110,26 @@ class _CreateAccountState extends State<CreateAccount> {
                                 try {
                                   final newUser = await _auth
                                       .createUserWithEmailAndPassword(
-                                          email: email, password: password);
+                                          email: creatAccount_email,
+                                          password: password);
                                   _fireStore
                                       .collection('profile')
-                                      .document('$email')
+                                      .document('$creatAccount_email')
                                       .setData({
                                     'name': name,
-                                    'e-mail': email,
+                                    'e-mail': creatAccount_email,
+                                    'shoulder': zer,
+                                    'arm': zer,
+                                    'back': zer,
+                                    'chest': zer,
+                                    'leg': zer,
+                                    'walking': zer,
+                                    'score': zer,
+                                    'photoUrl':
+                                        'https://firebasestorage.googleapis.com/v0/b/fitapp-33955.appspot.com/o/profilePicture%2FProfilePic.png?alt=media&token=73451faa-05f4-4b53-9de5-31290107e47a',
                                   });
                                   if (newUser != null) {
+//                                    email = creatAccount_email;
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -124,13 +137,15 @@ class _CreateAccountState extends State<CreateAccount> {
                                               afterSingUp_1()),
                                     );
                                   }
+                                } catch (e) {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                } catch (e) {
                                   print(e);
                                 }
                               },
+
+                              //EGER KAYITLI EMAİL İLE HESAP YOKSA FİREBASE YENİ KULLANICI OLUŞTURUYOR VE DATABASE KISMINA YAZILAN DEGERLERNE TABLO OLUŞTURUYOR
                               buttonColor: Color(0XFF2884DA)),
                           SizedBox(
                             height: 15.0,

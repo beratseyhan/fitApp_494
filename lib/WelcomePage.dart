@@ -1,9 +1,13 @@
+import 'package:fitappson/google_Sign_In.dart';
+import 'package:fitappson/home.dart';
 import 'package:fitappson/main.dart';
 
 import 'Login_Page.dart';
 import 'package:flutter/material.dart';
+import 'afterSingUp_1.dart';
 import 'contants.dart';
 import 'createAccountPage_1.dart';
+import 'google_Sign_In.dart';
 
 class Welcome extends StatefulWidget {
   @override
@@ -25,7 +29,7 @@ class _WelcomeState extends State<Welcome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'APP NAME',
+                'FitApp',
                 style: TextStyle(
                   fontFamily: 'Rajdhani',
                   color: Colors.white,
@@ -65,18 +69,16 @@ class _WelcomeState extends State<Welcome> {
                     );
                   },
                   buttonColor: kButtonColorGrey),
-              Text(
-                "- OR-",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontFamily: 'Rajdhani',
-                ),
-              ),
-              WelcomePageButton(
-                  buttonTitle: 'GMAİL',
-                  click: null,
-                  buttonColor: kButtonColorRed),
+//              Text(
+//                "- OR-",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontSize: 20.0,
+//                  fontFamily: 'Rajdhani',
+//                ),
+//              ),
+
+              //CONSTA HAZIR OLUŞTURDUGUM BUTON TÜM SAYFALARDA KULLA
             ],
           ),
         ),

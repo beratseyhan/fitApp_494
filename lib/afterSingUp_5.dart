@@ -91,28 +91,7 @@ class _afterSingUp_5State extends State<afterSingUp_5> {
                       SizedBox(
                         width: 40,
                       ),
-                      new RaisedButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedWeight = WeightType.Ibm;
-                            strWeight = 'IBM';
-                          });
-                        },
-                        child: Text(
-                          'IBM',
-                          style: TextStyle(
-                            color: selectedWeight == WeightType.Ibm
-                                ? Colors.white
-                                : Colors.purple,
-                          ),
-                        ),
-                        color: selectedWeight == WeightType.Ibm
-                            ? kActiveCardColor
-                            : kInActiveCardColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.transparent)),
-                      ),
+
                     ],
                   ),
                   SizedBox(height: 30),

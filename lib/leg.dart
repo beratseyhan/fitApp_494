@@ -7,6 +7,16 @@ import 'package:fitappson/add.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/more.dart';
+import 'package:fitappson/leg_1.dart';
+import 'package:fitappson/leg_2.dart';
+import 'package:fitappson/leg_3.dart';
+import 'package:fitappson/leg_4.dart';
+import 'package:fitappson/leg_5.dart';
+import 'package:fitappson/leg_6.dart';
+import 'package:fitappson/leg_7.dart';
+import 'package:fitappson/leg_8.dart';
+import 'package:fitappson/leg_9.dart';
+import 'package:fitappson/leg_10.dart';
 
 class leg extends StatefulWidget {
   @override
@@ -55,7 +65,9 @@ class _legState extends State<leg> {
         leading: new Column(
           children: <Widget>[
             new IconButton(icon: Image.asset('images/back_icon.png',),
-              onPressed: null,
+              onPressed: () => {
+                Navigator.pop(context),
+              },
               color: Colors.transparent,)
           ],
         ),
@@ -113,23 +125,22 @@ class _legState extends State<leg> {
 
 
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 16, right:16),
-              color: Color(0XFFE5E5E5),
-              child: ListView.separated(
-                itemBuilder: (context, index){
-                  return Column(
+            child: ListView.separated(
+              itemBuilder: (context, index){
+                return (Container(
+                  padding: EdgeInsets.only(left: 16, right:16),
+                  color: Color(0XFFE5E5E5),
+                  child:Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height:10,),
                       Row(
-
                         children: <Widget>[
                           Container(
 
                             width: 90,
                             height:90,
-                            child: ClipOval(child: Image.asset("images/leg/${index+1}.JPG",fit: BoxFit.cover, ),
+                            child: ClipOval(child: Image.asset("images/leg/1.JPG",fit: BoxFit.cover, ),
                             ),
                           ),
                           Expanded(
@@ -140,9 +151,9 @@ class _legState extends State<leg> {
                                   onTap: (){
                                     Navigator.push(context,
                                       MaterialPageRoute(
-                                          builder: (context) =>home()),
+                                          builder: (context) =>leg_1()),
                                     );
-                                  }, child: Text(litems[index],
+                                  }, child: Text("     Calf Raise",
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -152,23 +163,385 @@ class _legState extends State<leg> {
                                   ),
                                 ),
                                 ),
-
                               ],
                             ),
                           ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_1()),
+                              ),
+                            },)
+                        ], ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
 
-                          IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey),
-
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/2.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_2()),
+                                    );
+                                  }, child: Text("     Flutter Kicks",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_2()),
+                              ),
+                            },)
                         ],
                       ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/3.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_3()),
+                                    );
+                                  }, child: Text("     Front Kick",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_3()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/4.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_4()),
+                                    );
+                                  }, child: Text("     Jump",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_4()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/5.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) => leg_5()),
+                                    );
+                                  }, child: Text("      Modified Scissor",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_5()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/6.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_6()),
+                                    );
+                                  }, child: Text("     Plank Leg Swing",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_6()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/7.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_7()),
+                                    );
+                                  }, child: Text("     Side Leg Raise",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_7()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/8.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_8()),
+                                    );
+                                  }, child: Text("     Squat",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_8()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/9.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_9()),
+                                    );
+                                  }, child: Text("     Walking Lunge",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_9()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/leg/10.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>leg_10()),
+                                    );
+                                  }, child: Text("     Wall Sit",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> leg_10()),
+                              ),
+                            },)
+                        ],
+                      ),
+
                     ],
-                  );
-                },
-                separatorBuilder: (context, index,) => Divider(),
-                itemCount: litems.length,
-              ),
+                  ),
+                )
+                );
+              },
+              separatorBuilder: (context, index,) => Divider(),
+              itemCount: 1,
             ),
-          )
+          ),
 
 
 
@@ -176,9 +549,8 @@ class _legState extends State<leg> {
       ),
 
 
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Color.fromRGBO(74, 70, 70, 80),),
+      bottomNavigationBar:Theme(
+        data:Theme.of(context).copyWith(canvasColor: Color.fromRGBO(74, 70, 70, 80),),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
@@ -189,10 +561,8 @@ class _legState extends State<leg> {
           items: [
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/home.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => home()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> home()),
 
                   ),
                 },
@@ -204,10 +574,8 @@ class _legState extends State<leg> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/menu.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => more()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> more()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -217,12 +585,9 @@ class _legState extends State<leg> {
             ),
 
             BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset(
-                'images/plus.png', width: 50, height: 50,),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => add()),
+              icon: IconButton(icon: Image.asset('images/plus.png',width:50,height:50,),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> add()),
 
                   ),
                 },
@@ -234,10 +599,8 @@ class _legState extends State<leg> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/dumbbell.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => exercises()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> exercises()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -248,10 +611,8 @@ class _legState extends State<leg> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/settings_active.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => settings()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> settings()),
                   ),
                 },
                 color: Colors.transparent,),

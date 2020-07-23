@@ -7,6 +7,16 @@ import 'package:fitappson/add.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/more.dart';
+import 'package:fitappson/shoulder_1.dart';
+import 'package:fitappson/shoulder_2.dart';
+import 'package:fitappson/shoulder_3.dart';
+import 'package:fitappson/shoulder_4.dart';
+import 'package:fitappson/shoulder_5.dart';
+import 'package:fitappson/shoulder_6.dart';
+import 'package:fitappson/shoulder_7.dart';
+import 'package:fitappson/shoulder_8.dart';
+import 'package:fitappson/shoulder_9.dart';
+
 
 class shoulder extends StatefulWidget {
   @override
@@ -54,8 +64,10 @@ class _shoulderState extends State<shoulder> {
         leading: new Column(
           children: <Widget>[
             new IconButton(icon: Image.asset('images/back_icon.png',),
-              onPressed: null,
-              color: Colors.transparent,)
+              onPressed: () => {
+                Navigator.pop(context),
+              },
+            )
           ],
         ),
         title: new Column(
@@ -112,23 +124,22 @@ class _shoulderState extends State<shoulder> {
 
 
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 16, right:16),
-              color: Color(0XFFE5E5E5),
-              child: ListView.separated(
-                itemBuilder: (context, index){
-                  return Column(
+            child: ListView.separated(
+              itemBuilder: (context, index){
+                return (Container(
+                  padding: EdgeInsets.only(left: 16, right:16),
+                  color: Color(0XFFE5E5E5),
+                  child:Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height:10,),
                       Row(
-
                         children: <Widget>[
                           Container(
 
                             width: 90,
                             height:90,
-                            child: ClipOval(child: Image.asset("images/shoulder/${index+1}.PNG",fit: BoxFit.cover, ),
+                            child: ClipOval(child: Image.asset("images/shoulder/1.PNG",fit: BoxFit.cover, ),
                             ),
                           ),
                           Expanded(
@@ -139,9 +150,9 @@ class _shoulderState extends State<shoulder> {
                                   onTap: (){
                                     Navigator.push(context,
                                       MaterialPageRoute(
-                                          builder: (context) =>home()),
+                                          builder: (context) =>shoulder_1()),
                                     );
-                                  }, child: Text(litems[index],
+                                  }, child: Text("  Dumbbell Shoulder Press",
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -151,23 +162,385 @@ class _shoulderState extends State<shoulder> {
                                   ),
                                 ),
                                 ),
-
                               ],
                             ),
                           ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_1()),
+                              ),
+                            },)
+                        ], ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
 
-                          IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey),
-
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/2.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_2()),
+                                    );
+                                  }, child: Text("     Bent-Over",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_2()),
+                              ),
+                            },)
                         ],
                       ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/3.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_3()),
+                                    );
+                                  }, child: Text("     Shoulder Shrugs",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_3()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/4.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_4()),
+                                    );
+                                  }, child: Text("     Push Ups",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_4()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/5.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_5()),
+                                    );
+                                  }, child: Text("     Dumbbell Lateral Raise",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_5()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/6.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_6()),
+                                    );
+                                  }, child: Text("     Shoulder Press",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_6()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/7.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_7()),
+                                    );
+                                  }, child: Text("     Upraight Row",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_7()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/8.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_6()),
+                                    );
+                                  }, child: Text("     Shoulder Press",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_6()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/9.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_8()),
+                                    );
+                                  }, child: Text("     Shoulder Taps",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_8()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/shoulder/10.PNG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>shoulder_9()),
+                                    );
+                                  }, child: Text("     Arm Circles",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> shoulder_9()),
+                              ),
+                            },)
+                        ],
+                      ),
+
                     ],
-                  );
-                },
-                separatorBuilder: (context, index) => Divider(),
-                itemCount: litems.length,
-              ),
+                  ),
+                )
+                );
+              },
+              separatorBuilder: (context, index,) => Divider(),
+              itemCount: 1,
             ),
-          )
+          ),
 
 
 
@@ -175,9 +548,8 @@ class _shoulderState extends State<shoulder> {
       ),
 
 
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Color.fromRGBO(74, 70, 70, 80),),
+      bottomNavigationBar:Theme(
+        data:Theme.of(context).copyWith(canvasColor: Color.fromRGBO(74, 70, 70, 80),),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
@@ -188,10 +560,8 @@ class _shoulderState extends State<shoulder> {
           items: [
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/home.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => home()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> home()),
 
                   ),
                 },
@@ -203,10 +573,8 @@ class _shoulderState extends State<shoulder> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/menu.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => more()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> more()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -216,12 +584,9 @@ class _shoulderState extends State<shoulder> {
             ),
 
             BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset(
-                'images/plus.png', width: 50, height: 50,),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => add()),
+              icon: IconButton(icon: Image.asset('images/plus.png',width:50,height:50,),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> add()),
 
                   ),
                 },
@@ -233,10 +598,8 @@ class _shoulderState extends State<shoulder> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/dumbbell.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => exercises()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> exercises()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -247,10 +610,8 @@ class _shoulderState extends State<shoulder> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/settings_active.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => settings()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> settings()),
                   ),
                 },
                 color: Colors.transparent,),

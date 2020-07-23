@@ -1,3 +1,6 @@
+
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitappson/accountset.dart';
 import 'package:fitappson/profile_Page.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +10,13 @@ import 'package:fitappson/more.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/add.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'dart:io';
+import 'dart:math';
+import 'Login_Page.dart';
 
 class profile_settings extends StatefulWidget {
   @override
@@ -14,6 +24,9 @@ class profile_settings extends StatefulWidget {
 }
 
 class profile_settingsState extends State<profile_settings> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  final fullnamenew = TextEditingController();
+
   int _selectedIndex = 0;
   final List<Widget> _children = [];
   void changePage(int index) {
@@ -71,8 +84,37 @@ class profile_settingsState extends State<profile_settings> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Spacer(flex: 1),
+                  Row(
+                    children: <Widget>[
+                      Container(width: 100,),
+                      Container(
+                        child:CircleAvatar(
+                          radius: 40.0,
+                          backgroundImage: NetworkImage('$url'),
+                          backgroundColor: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children:<Widget>[
+                      Container(width: 150,),
+                      Container(
+                        child: FloatingActionButton(
+                          onPressed: getImage,
+                          child: Icon(Icons.add_a_photo, color: Colors.white, ),
+                          backgroundColor: Colors.purple,
+                          mini: true,
+
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Spacer(flex: 2),
                   Text(
-                    "Full Name:",
+                    "     Full Name:",
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -82,8 +124,12 @@ class profile_settingsState extends State<profile_settings> {
                       color: Colors.black.withOpacity(1.0),
                     ),
                   ),
+                  Spacer(flex: 1),
                   TextField(
-                    obscureText: true,
+                    onChanged: (value) {
+                      name = value;
+                    },
+                    obscureText: false,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -113,9 +159,10 @@ class profile_settingsState extends State<profile_settings> {
                       ),
                     ),
                   ),
-                  Spacer(flex: 1),
+                  Spacer(flex: 2),
+
                   Text(
-                    "City:",
+                    "     Height:",
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -125,8 +172,12 @@ class profile_settingsState extends State<profile_settings> {
                       color: Colors.black.withOpacity(1.0),
                     ),
                   ),
+                  Spacer(flex: 1),
                   TextField(
-                    obscureText: true,
+                    onChanged: (value) {
+                      height = int.parse(value);
+                    },
+                    obscureText: false,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -156,9 +207,9 @@ class profile_settingsState extends State<profile_settings> {
                       ),
                     ),
                   ),
-                  Spacer(flex: 1),
+                  Spacer(flex: 2),
                   Text(
-                    "Gender:",
+                    "     Weight:",
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -168,137 +219,12 @@ class profile_settingsState extends State<profile_settings> {
                       color: Colors.black.withOpacity(1.0),
                     ),
                   ),
-                  TextField(
-                    obscureText: true,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 1.0,
-                        fontFamily: 'Rajdhani',
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(137, 55, 150, 100),
-                            width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(137, 55, 150, 100),
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                    ),
-                  ),
                   Spacer(flex: 1),
-                  Text(
-                    "Birth Date:",
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      fontFamily: 'Rajdhani',
-                      color: Colors.black.withOpacity(1.0),
-                    ),
-                  ),
                   TextField(
-                    obscureText: true,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 1.0,
-                        fontFamily: 'Rajdhani',
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(137, 55, 150, 100),
-                            width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(137, 55, 150, 100),
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                    ),
-                  ),
-                  Spacer(flex: 1),
-                  Text(
-                    "Height:",
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      fontFamily: 'Rajdhani',
-                      color: Colors.black.withOpacity(1.0),
-                    ),
-                  ),
-                  TextField(
-                    obscureText: true,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 1.0,
-                        fontFamily: 'Rajdhani',
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(137, 55, 150, 100),
-                            width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(137, 55, 150, 100),
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                    ),
-                  ),
-                  Spacer(flex: 1),
-                  Text(
-                    "Weight:",
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      fontFamily: 'Rajdhani',
-                      color: Colors.black.withOpacity(1.0),
-                    ),
-                  ),
-                  TextField(
-                    obscureText: true,
+                    onChanged: (value) {
+                      weight = int.parse(value);
+                    },
+                    obscureText: false,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -331,14 +257,16 @@ class profile_settingsState extends State<profile_settings> {
                   Spacer(flex: 3),
                   RaisedButton(
                     onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => accountset()),
-                      ),
+
+                      Firestore.instance.collection("profile")
+                          .document("$email")
+                          .updateData({'name' : name,
+                        'height' : height,
+                        'weight' : weight,})
                     },
-                    color: Color.fromRGBO(40, 132, 218, 100),
+                    color: Colors.purple.withOpacity(0.7),
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                     elevation: 5.0,
                     splashColor: Colors.grey,
                     animationDuration: Duration(seconds: 2),
@@ -347,19 +275,19 @@ class profile_settingsState extends State<profile_settings> {
                     ),
                     child: Center(
                         child: Container(
-                      width: 40,
-                      height: 25,
-                      child: Text(
-                        "Save",
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Rajdhani',
-                          color: Colors.white,
-                        ),
-                      ),
-                    )),
+                          width: 40,
+                          height: 25,
+                          child: Text(
+                            "Save",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Rajdhani',
+                              color: Colors.white,
+                            ),
+                          ),
+                        )),
                   ),
                 ])),
       ),
@@ -466,4 +394,73 @@ class profile_settingsState extends State<profile_settings> {
       ),
     );
   }
+
+  Future getImage() async {
+    // Get image from gallery.
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _uploadImageToFirebase(image);
+  }
+
+  Future<void> _uploadImageToFirebase(File image) async {
+    try {
+      // Make random image name.
+      int randomNumber = Random().nextInt(100000);
+      String imageLocation = 'profilePicture/image${randomNumber}.jpg';
+
+      // Upload image to firebase.
+      final StorageReference storageReference =
+      FirebaseStorage().ref().child(imageLocation);
+      final StorageUploadTask uploadTask = storageReference.putFile(image);
+      await uploadTask.onComplete;
+      _addPathToDatabase(imageLocation);
+    } catch (e) {
+      print(e.message);
+    }
+  }
+
+  Future<void> _addPathToDatabase(String text) async {
+    try {
+      // Get image URL from firebase
+      final ref = FirebaseStorage().ref().child(text);
+      var imageString = await ref.getDownloadURL();
+
+      // Add location and url to database
+      await Firestore.instance
+          .collection('profile')
+          .document('$email')
+          .updateData({'photoUrl': imageString, 'location': text});
+      url = imageString;
+    } catch (e) {
+      print(e.message);
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(e.message),
+            );
+          });
+    }
+  }
+}
+
+
+
+
+
+class Record {
+  final String location;
+  final String url;
+  final DocumentReference reference;
+
+  Record.fromMap(Map<String, dynamic> map, {this.reference})
+      : assert(map['location'] != null),
+        assert(map['photoUrl'] != null),
+        location = map['location'],
+        url = map['photoUrl'];
+
+  Record.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
+
+  @override
+  String toString() => "Record<$location:$url>";
 }

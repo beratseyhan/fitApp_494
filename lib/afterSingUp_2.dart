@@ -20,28 +20,7 @@ class _afterSingUp_2State extends State<afterSingUp_2> {
     final profile = await _fireStore.collection('profile').getDocuments();
   }
 
-  void getData() {
-    _fireStore
-        .collection('profile')
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((f) => print('${f.data}'));
-    });
-  }
-
-  void updateData() {
-    try {
-      _fireStore
-          .collection('profile')
-          .document('$email')
-          .updateData({'data': birth.toString()});
-      print(('denemee'));
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  _getUserAuthEmail() async {
+  _updateBrith() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
       _userEmail = user.email;
@@ -56,6 +35,7 @@ class _afterSingUp_2State extends State<afterSingUp_2> {
       }
     });
   }
+  //seçilen dogum tarihini update edilir
 
   final _fireStore = Firestore.instance;
   var date;
@@ -126,8 +106,8 @@ class _afterSingUp_2State extends State<afterSingUp_2> {
 //                            _fireStore.collection('profile').add({
 //                              'date': birth,
 //                            });
-                            getData();
-                            _getUserAuthEmail();
+
+                            _updateBrith();
                             print('$birth');
                             Navigator.push(
                               context,
@@ -169,3 +149,4 @@ enum DatePickerDateOrder {
   /// Example: 1996 | 12 | March
   ydm,
 }
+//Dogum tarihi seçme butonu

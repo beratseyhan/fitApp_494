@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+
   cloud_firestore: ^0.13.5
   firebase_auth: ^0.16.0
   firebase: ^7.3.0
@@ -26,6 +27,14 @@ dependencies:
   firebase_storage: ^3.1.5
   image_picker: ^0.6.5+2
   provider: ^3.1.1
+  uuid: 2.0.4
+  url_launcher: ^3.0.3
+  shared_preferences: "^0.4.2"
+  google_sign_in: ^4.4.6
+  flappy_search_bar: 1.4.1
+  getflutter: ^1.0.10
+  firebase_messaging: ^6.0.13
+
   flutter:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.
@@ -63,7 +72,6 @@ flutter:
     - images/Achievements/10.PNG
     - images/finish0.jpg
     - images/finish1.jpg
-
     - images/finish3.jpg
     - images/finish4.jpg
     - images/back_icon.png
@@ -255,6 +263,11 @@ flutter:
     - images/3.png
     - images/4.png
     - images/exerciseTime.png
+    - images/water.png
+    - images/sport.png
+    - images/yoga.png
+    - images/eat.png
+    - images/forget4.jpeg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -271,17 +284,8 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Dancing Script
+      fonts:
+        - asset: fonts/DancingScript-Medium.ttf
+          style: italic

@@ -1,6 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitappson/deneme.dart';
-import 'package:fitappson/homePage.dart';
+import 'package:fitappson/home.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fitappson/home.dart';
+import 'package:fitappson/more.dart';
+import 'package:fitappson/add.dart';
+import 'package:fitappson/exercises.dart';
+import 'package:fitappson/settings.dart';
+
+import 'Login_Page.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fitappson/home.dart';
@@ -18,21 +28,7 @@ class achievements extends StatefulWidget {
 
 class _achievementsState extends State<achievements> {
   int _selectedIndex = 0;
-  int score = 4;
-  int points;
 
-  List<String> litems = [
-    "Taking Small Steps\nRun for 100 meters.",
-    "Getting Serious\nRun for 1000 meters.",
-    "Now We Are Talking\nRun for 5000 meters.",
-    "Do you even lift?\nLift 1 kg worth of weight.",
-    "Up and Down\nSquatted 10 times.",
-    "Easy There Fella\nSquatted 50 times.",
-    "Like a Rollercoaster\nSquatted 250 times.",
-    "Hello World\nCompleted your profile.",
-    "Dragon Fire\nBurnt out 10,000 calories.",
-    "Iron Man\nAchieve Now We Are Talking , Like a Rollercoaster , King of the Hill.",
-  ];
   void changePage(int index) {
     setState(() {
       _selectedIndex = index;
@@ -41,6 +37,7 @@ class _achievementsState extends State<achievements> {
 
   @override
   Widget build(BuildContext context) {
+//    getAchv();
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color(0XFFE5E5E5),
@@ -53,7 +50,9 @@ class _achievementsState extends State<achievements> {
               icon: Image.asset(
                 'images/back_icon.png',
               ),
-              onPressed: null,
+              onPressed: () => {
+                Navigator.pop(context),
+              },
               color: Colors.transparent,
             )
           ],
@@ -73,19 +72,8 @@ class _achievementsState extends State<achievements> {
         ),
       ),
 
-      body: StreamBuilder<Object>(
-          stream: Firestore.instance
-              .collection('profile')
-              .document('$email')
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return new Text("Loading");
-            }
-            var denemeScore = snapshot.data;
-
-            print('$denemeScore');
-            return Column(
+      body: Achv != null
+          ? Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -100,54 +88,58 @@ class _achievementsState extends State<achievements> {
                             const SizedBox(
                               height: 5,
                             ),
-                            Container(
-                              color: index <= score
-                                  ? Colors.white
-                                  : Colors.grey[700],
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 65,
-                                    height: 50,
-                                    child: ClipRect(
-                                      child: Image.asset(
-                                        "images/Achievements/${index + 1}.PNG",
-                                        fit: BoxFit.scaleDown,
-                                      ),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 65,
+                                  height: 50,
+                                  child: ClipRect(
+                                    child: Image.asset(
+                                      "images/${index + 1}.png",
+                                      fit: BoxFit.scaleDown,
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          litems[index],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                            fontFamily: 'Rajdhani',
-                                            color:
-                                                Colors.black.withOpacity(0.80),
-                                          ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        Achv[index],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          fontFamily: 'Rajdhani',
+                                          color: Colors.black.withOpacity(0.80),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         );
                       },
                       separatorBuilder: (context, index) => Divider(),
-                      itemCount: litems.length,
+                      itemCount: Achv.length,
                     ),
                   ),
                 )
               ],
-            );
-          }),
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  child: Center(
+                    child: Text('No Achievement'),
+                  ),
+                ),
+              ],
+            ),
       //Alt menü.
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
@@ -168,7 +160,7 @@ class _achievementsState extends State<achievements> {
                 onPressed: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => homePage()),
+                    MaterialPageRoute(builder: (context) => home()),
                   ),
                 },
                 color: Colors.transparent,

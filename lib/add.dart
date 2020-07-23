@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitappson/shoulder.dart';
 import 'package:flutter/material.dart';
@@ -8,18 +9,71 @@ import 'package:fitappson/settings.dart';
 import 'package:intl/intl.dart';
 import 'package:fitappson/more.dart';
 
+import 'Login_Page.dart';
+import 'afterSingUp_1.dart';
+import 'home.dart';
+
+String achievement;
+
+int Walking=0;
+
+int WalkingSum=0;
+
+bool ShoulderExercises = false;
+
+bool ArmExercises = false;
+
+bool BackExercises = false;
+
+bool SixPackExercises = false;
+
+bool ChestExercises = false;
+
+bool LegExercises = false;
+
+String _statusSel;
+
+List<String> achievementsList;
+
 class add extends StatefulWidget {
   @override
   _addState createState() => _addState();
 }
 
 class _addState extends State<add> {
-  bool checkBoxValue = false;
-  bool checkBoxValuetwo = false;
-  bool checkBoxValuethree = false;
-  bool checkBoxValuefour = false;
-  bool checkBoxValuefive = false;
-  bool checkBoxValuesix = false;
+  createAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Congratulations ",
+              textAlign: TextAlign.center,
+            ),
+            content: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                IconButton(
+                  icon: Image.asset('images/star.png'),
+                  iconSize: 100,
+                ),
+                Text(" You've won success!"),
+              ]),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text("Back"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+
+//read current date
   DateTime _currentdate = new DateTime.now();
 
   int _selectedIndex = 0;
@@ -31,7 +85,6 @@ class _addState extends State<add> {
   }
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
-  String _statusSel;
 
   List<DropdownMenuItem<String>> _getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
@@ -62,7 +115,9 @@ class _addState extends State<add> {
     _dropDownMenuItems = _getDropDownMenuItems();
     _statusSel = _dropDownMenuItems[0].value;
 
-    super.initState();
+//    super.initState();
+//
+//    getVariable();
   }
 
   @override
@@ -81,10 +136,7 @@ class _addState extends State<add> {
                 'images/back_icon.png',
               ),
               onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => shoulder()),
-                ),
+                Navigator.pop(context),
               },
               color: Colors.transparent,
             )
@@ -120,7 +172,7 @@ class _addState extends State<add> {
                         alignment: Alignment.topCenter,
                       ),
                       Text(
-                        "Come on, Add your activities today!",
+                        "Come on, Add your activities!",
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -169,7 +221,7 @@ class _addState extends State<add> {
               height: 20,
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
               width: double.infinity,
               height: 1.0,
               color: Colors.grey.shade400,
@@ -187,23 +239,46 @@ class _addState extends State<add> {
                   ),
                 ),
                 Container(
-                  width: 165,
+                  width: 135,
                 ),
-                DropdownButton(
+                Container(
+                  color: Colors.transparent,
+                  height: 50,
+                  width: 50,
+                  child: TextField(
+                    onChanged: (value) {
+                      Walking = int.parse(value);
+                    },
+                    textInputAction: TextInputAction.done,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontFamily: 'Rajdhani',
+                      color: Colors.purple,
+                    ),
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 2,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child:Text(
+                  "  Min",
+
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     fontFamily: 'Rajdhani',
-                    color: Colors.black.withOpacity(0.67),
+                    color: Colors.purple,
                   ),
-                  value: _statusSel,
-                  items: _dropDownMenuItems,
-                  onChanged: changedDropDownItem,
+                ),
                 ),
               ],
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
               width: double.infinity,
               height: 1.0,
               color: Colors.grey.shade400,
@@ -247,10 +322,10 @@ class _addState extends State<add> {
                   width: 130,
                 ),
                 Checkbox(
-                  value: checkBoxValue,
+                  value: ShoulderExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValue = value;
+                      ShoulderExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -279,10 +354,10 @@ class _addState extends State<add> {
                   width: 162,
                 ),
                 Checkbox(
-                  value: checkBoxValuetwo,
+                  value: ArmExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValuetwo = value;
+                      ArmExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -308,13 +383,13 @@ class _addState extends State<add> {
                   ),
                 ),
                 Container(
-                  width: 134,
+                  width: 133,
                 ),
                 Checkbox(
-                  value: checkBoxValuethree,
+                  value: SixPackExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValuethree = value;
+                      SixPackExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -343,10 +418,10 @@ class _addState extends State<add> {
                   width: 164,
                 ),
                 Checkbox(
-                  value: checkBoxValuefour,
+                  value: LegExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValuefour = value;
+                      LegExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -375,10 +450,10 @@ class _addState extends State<add> {
                   width: 150,
                 ),
                 Checkbox(
-                  value: checkBoxValuefive,
+                  value: ChestExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValuefive = value;
+                      ChestExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -407,10 +482,10 @@ class _addState extends State<add> {
                   width: 157,
                 ),
                 Checkbox(
-                  value: checkBoxValuesix,
+                  value: BackExercises,
                   onChanged: (bool value) {
                     setState(() {
-                      checkBoxValuesix = value;
+                      BackExercises = value;
                     });
                   },
                   activeColor: Colors.purple,
@@ -431,7 +506,298 @@ class _addState extends State<add> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    print('$shoulderValue');
+                    print('$Walking');
+                    print('$legValue');
+
+                    if(Walking!=null){
+                       WalkingSum = Walking + WalkingSum;
+                       databaseReference
+                           .collection('profile')
+                           .document('$email')
+                           .updateData({'walking': WalkingSum});
+                       if(WalkingSum >0  && WalkingSum <=15){
+                         createAlertDialog(context);
+                         score = (score + 5) * 2;
+                         databaseReference
+                             .collection('profile')
+                             .document('$email')
+                             .updateData({
+                           'achv': FieldValue.arrayUnion(
+                               ["Good Start!"]),
+                           'score': score
+                         });
+                         achievementsList.add("Good Start!");
+                       }// walking 0-15 min
+
+                       else if(WalkingSum >15  && WalkingSum <=45){
+                      createAlertDialog(context);
+                      score = (score + 5) * 2;
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({
+                        'achv': FieldValue.arrayUnion(
+                            ["Steps on the way to the goal"]),
+                        'score': score
+                      });
+                      achievementsList.add("Steps on the way to the goal");
+                    }// walking 15-45 min
+
+                       else if(WalkingSum >45  && WalkingSum <=60){
+                         createAlertDialog(context);
+                         score = (score + 5) * 2;
+                         databaseReference
+                             .collection('profile')
+                             .document('$email')
+                             .updateData({
+                           'achv': FieldValue.arrayUnion(
+                               ["More than 45 minutes a day!"]),
+                           'score': score
+                         });
+                         achievementsList.add("More than 45 minutes a day!");
+                       }// walking 45-60 min
+
+                       else if(WalkingSum >60  && WalkingSum <=90){
+                       createAlertDialog(context);
+                       score = (score + 5) * 2;
+                       databaseReference
+                           .collection('profile')
+                           .document('$email')
+                           .updateData({
+                         'achv': FieldValue.arrayUnion(
+                             ["You are too fast!"]),
+                         'score': score
+                       });
+                       achievementsList.add("You are too fast!");
+                    }// walking 60-90 min
+
+                       else if(WalkingSum >90  && WalkingSum <=240){
+                         createAlertDialog(context);
+                         score = (score + 5) * 2;
+                         databaseReference
+                             .collection('profile')
+                             .document('$email')
+                             .updateData({
+                           'achv': FieldValue.arrayUnion(
+                               ["King of Walking"]),
+                           'score': score
+                         });
+                         achievementsList.add("King of Walking");
+                       }// walking 90-240 min
+
+                  }
+
+
+
+                    if (ShoulderExercises == true) {
+                      shoulderValue = shoulderValue + 1;
+
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({'shoulder': shoulderValue});
+
+                      if (shoulderValue == 1) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv': FieldValue.arrayUnion(
+                              ["First Shoulder Exercises"]),
+                          'score': score
+                        });
+
+                        achievementsList.add("First Shoulder Exercises");
+                      } //first shoulder exercises
+                      else if (shoulderValue == 5) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv': FieldValue.arrayUnion(
+                              ["King Of Shoulder Exercises"]),
+                          'score': score
+                        });
+
+                        achievementsList.add("King Of Shoulder Exercises");
+                      } //king of shoulder exercises
+                    }
+                    if (ArmExercises == true) {
+                      armValue = armValue + 1;
+
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({'arm': armValue});
+
+                      if (armValue == 1) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv':
+                              FieldValue.arrayUnion(["First Arm Exercises"]),
+                          'score': score
+                        });
+                        achievementsList.add("First Arm Exercises");
+                        createAlertDialog(context);
+                      } else if (armValue == 5) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv':
+                              FieldValue.arrayUnion(["King Of Arm Exercises"]),
+                          'score': score
+                        });
+                        achievementsList.add("King Of Arm Exercises");
+                      }
+                    }
+                    if (SixPackExercises == true) {
+                      sixPackValue = sixPackValue + 1;
+
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({'sixpack': sixPackValue});
+
+                      if (sixPackValue == 1) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv': FieldValue.arrayUnion(
+                              ["First Six Pack Exercises"]),
+                          'score': score
+                        });
+                        achievementsList.add("First Six Pack Exercises");
+
+                        createAlertDialog(context);
+                      } else if (sixPackValue == 5) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv': FieldValue.arrayUnion(
+                              ["King Of Six Pack Exercises"]),
+                          'score': score
+                        });
+
+                        achievementsList.add("King Of Six Pack Exercises");
+                        createAlertDialog(context);
+                      }
+                    }
+                    if (LegExercises == true) {
+                      legValue = legValue + 1;
+
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({'leg': legValue});
+
+                      if (legValue == 1) {
+                        createAlertDialog(context);
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv':
+                              FieldValue.arrayUnion(["First Leg Exercises"]),
+                          'score': score
+                        });
+                        achievementsList.add("First Leg Exercises");
+                      } else if (legValue == 5) {
+//                        achievementsList.add("King Of Leg Exercises");
+                        createAlertDialog(context);
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv':
+                              FieldValue.arrayUnion(["King Of Leg Exercises"]),
+                          'score': score
+                        });
+                      }
+                    }
+                    if (ChestExercises == true) {
+                      chestValue = chestValue + 1;
+                      databaseReference
+                          .collection('profile')
+                          .document('$email')
+                          .updateData({'chest': chestValue});
+                      if (chestValue == 1) {
+                        createAlertDialog(context);
+                        score = (score + 5) * 2;
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({
+                          'achv':
+                              FieldValue.arrayUnion(["First Chest Exercises"]),
+                          'score': score
+                        });
+                        achievementsList.add("First Chest Exercises");
+                      } else if (chestValue == 5) {
+                        if (chestValue == 1) {
+                          createAlertDialog(context);
+                          score = (score + 5) * 2;
+                          databaseReference
+                              .collection('profile')
+                              .document('$email')
+                              .updateData({
+                            'achv': FieldValue.arrayUnion(
+                                ["King Of Chest Exercises"]),
+                            'score': score
+                          });
+                          achievementsList.add("King Of Chest Exercises");
+                        }
+                      }
+                      if (BackExercises == true) {
+                        databaseReference
+                            .collection('profile')
+                            .document('$email')
+                            .updateData({'back': backValue});
+                        backValue = backValue + 1;
+                        if (backValue == 1) {
+                          createAlertDialog(context);
+                          score = (score + 5) * 2;
+                          databaseReference
+                              .collection('profile')
+                              .document('$email')
+                              .updateData({
+                            'achv':
+                                FieldValue.arrayUnion(["First Back Exercises"])
+                          });
+                          achievementsList.add("First Back Exercises");
+                        } else if (backValue == 5) {
+                          createAlertDialog(context);
+                          score = (score + 5) * 2;
+                          databaseReference
+                              .collection('profile')
+                              .document('$email')
+                              .updateData({
+                            'achv': FieldValue.arrayUnion(
+                                ["King Of Back Exercises"])
+                          });
+                          achievementsList.add("King Of Exercises");
+                        }
+                      }
+                    }
+                  },
                   child: Container(
                     width: 40,
                     height: 30,

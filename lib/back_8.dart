@@ -9,12 +9,12 @@ import 'package:fitappson/more.dart';
 import 'package:fitappson/back.dart';
 
 // İÇERİK EKLENMELİ , ŞİMDİLİK BULAMADIM BACK TURN HAREKETİNİ
-class back_1 extends StatefulWidget {
+class back_8 extends StatefulWidget {
   @override
-  _back_1State createState() => _back_1State();
+  _back_8State createState() => _back_8State();
 }
 
-class _back_1State extends State<back_1> {
+class _back_8State extends State<back_8> {
 
   int _selectedIndex = 0;
   final List <Widget> _children= [

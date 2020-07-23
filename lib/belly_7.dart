@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fitappson/Privacy.dart';
+import 'package:fitappson/sixpack.dart';
 import 'package:flutter/material.dart';
 import 'package:fitappson/home.dart';
 import 'package:fitappson/add.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/more.dart';
-import 'Privacy.dart';
 
 
 
-class s_change_password extends StatefulWidget {
+
+class belly_7 extends StatefulWidget {
   @override
-  _s_change_passwordState createState() => _s_change_passwordState();
+  _belly_7State createState() => _belly_7State();
 }
 
-class _s_change_passwordState extends State<s_change_password> {
+class _belly_7State extends State<belly_7> {
 
   int _selectedIndex = 0;
   final List <Widget> _children= [
@@ -36,7 +36,6 @@ class _s_change_passwordState extends State<s_change_password> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color(0XFFE5E5E5),
-
       appBar: new AppBar(
         backgroundColor: Color(0XFFE5E5E5),
         elevation: 0,
@@ -44,10 +43,23 @@ class _s_change_passwordState extends State<s_change_password> {
           children: <Widget>[
             new IconButton(icon: Image.asset('images/back_icon.png',),
               onPressed: () => {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Privacy()),
-                ),
+                Navigator.pop(context),
               },
               color: Colors.transparent,)
+          ],
+        ),
+        title: new Column(
+          children: <Widget>[
+            Text(
+              "   Side Jack Knives",
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.bold,
+                fontSize: 16,
+                fontFamily: 'Rajdhani',
+                color: Colors.black.withOpacity(0.67),
+              ),
+            ),
           ],
         ),
       ),
@@ -56,7 +68,8 @@ class _s_change_passwordState extends State<s_change_password> {
         child: Container(
           alignment: Alignment.topCenter,
           width:303,
-          height: 303,
+          height: 400,
+
           margin: const EdgeInsets.all(10.0),
           padding: EdgeInsets.all(20.0),
           decoration: new BoxDecoration(
@@ -69,28 +82,40 @@ class _s_change_passwordState extends State<s_change_password> {
             //crossAxisAlignment: CrossAxisAlignment.start,
 
             children: <Widget>[
-              Spacer(flex: 1),
               Image(
-                image: AssetImage('images/done.png',),
-                width: 50,
-                height: 50,
+                image: AssetImage('images/Belly1/Side_jack_knive.jpg',),
+                //width: 50,
+                //height: 50,
+              ),
+              Spacer(flex: 2),
+              Text(
+                "Training while lying down is best if you are a bit tired of sitting, espacially if you have to sit through your work time.",
+                textAlign: TextAlign.left,
+                //overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  fontFamily: 'Rajdhani',
+                  color: Colors.black,
+                ),
+              ),
+              Spacer(flex: 1),
+
+
+              Text(
+                "   How to do it: Lie down to mat, on your right side.Put your right hand to your chest and left hand to side of your head, stack your legs. As you lift your right leg straight up , push yourself with help of your right hand to your leg and repeat.",
+                textAlign: TextAlign.left,
+                //overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  fontFamily: 'Rajdhani',
+                  color: Colors.black,
+                ),
               ),
               Spacer(flex: 1),
               Text(
-                "Password Updated!",
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  fontFamily: 'Rajdhani',
-                  color: Colors.black,
-                ),
-              ),
-              Spacer(flex: 1),
-              Text(
-                "Your password has been changed",
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
+                "This exercise requires to have a mat.",
+                textAlign: TextAlign.left,
+                // overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontWeight: FontWeight.bold,
                   fontSize: 14,
                   fontFamily: 'Rajdhani',
@@ -98,43 +123,7 @@ class _s_change_passwordState extends State<s_change_password> {
                 ),
               ),
 
-              Text(
-                "successfully!",
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  fontFamily: 'Rajdhani',
-                  color: Colors.black,
-                ),
-              ),
 
-              RichText(
-                text: TextSpan(
-                  text: 'Use your new password to ',
-                  style: TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    fontFamily: 'Rajdhani',
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context) =>home()),
-                  );
-                }, child: Text("log in.",
-                style: TextStyle(fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  fontFamily: 'Rajdhani',
-                  color: Colors.blueAccent,
-                ),
-              ),
-
-
-              ),
               Spacer(flex: 1),
 
             ],

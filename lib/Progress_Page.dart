@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'afterSingUp_Finish.dart';
 import 'Login_Page.dart';
-import 'homePage.dart';
+import 'home.dart';
 import 'profile_Page.dart';
 import 'package:flutter/material.dart';
 import 'afterSingUp_Finish.dart';
@@ -50,7 +50,7 @@ class _progress_PageState extends State<progress_Page> {
                             click: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => homePage()),
+                                MaterialPageRoute(builder: (context) => home()),
                               );
                             },
                           ),
@@ -64,7 +64,7 @@ class _progress_PageState extends State<progress_Page> {
                             click: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => homePage()),
+                                MaterialPageRoute(builder: (context) => home()),
                               );
                             },
                           ),

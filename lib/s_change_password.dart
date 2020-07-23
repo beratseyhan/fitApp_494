@@ -1,3 +1,4 @@
+import 'package:fitappson/Login_Page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitappson/change_password.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class _s_change_passwordState extends State<s_change_password> {
                 onTap: (){
                   Navigator.push(context,
                     MaterialPageRoute(
-                        builder: (context) =>home()),
+                        builder: (context) =>Login_Page()),
                   );
                 }, child: Text("log in.",
                 style: TextStyle(fontWeight: FontWeight.bold,

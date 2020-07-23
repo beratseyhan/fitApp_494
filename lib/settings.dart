@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitappson/Privacy.dart';
+import 'package:fitappson/WelcomePage.dart';
 import 'package:fitappson/help.dart';
-import 'package:fitappson/homePage.dart';
+import 'package:fitappson/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitappson/change_email.dart';
 import 'package:fitappson/change_password.dart';
@@ -26,6 +28,15 @@ class _settingsState extends State<settings> {
     });
   }
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  _signOut() async {
+    await _firebaseAuth.signOut();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Welcome()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +54,7 @@ class _settingsState extends State<settings> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => homePage()),
+                  MaterialPageRoute(builder: (context) => home()),
                 );
               },
               color: Colors.transparent,
@@ -287,6 +298,7 @@ class _settingsState extends State<settings> {
                     ),
                     onTap: () {
                       //login pageye gidecek.
+                      _signOut();
                     },
                   ),
                 ],

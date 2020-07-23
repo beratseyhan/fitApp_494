@@ -17,6 +17,7 @@ class afterSingUp_4 extends StatefulWidget {
   _afterSingUp_4State createState() => _afterSingUp_4State();
 }
 
+int weight;
 enum WeightType {
   Kg,
   Ibm,
@@ -28,7 +29,7 @@ String strWeight = 'Kg';
 String _userEmail;
 
 class _afterSingUp_4State extends State<afterSingUp_4> {
-  _getUserAuthEmail() async {
+  _updateWeight() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
       _userEmail = user.email;
@@ -37,7 +38,7 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
         databaseReference
             .collection('profile')
             .document('$_userEmail')
-            .updateData({'weight': '$weight'});
+            .updateData({'weight': weight});
       } catch (e) {
         print(e.toString());
       }
@@ -66,8 +67,6 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
       },
     );
   }
-
-  int weight;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +103,7 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
                   textBaseline: TextBaseline.ideographic,
                   children: <Widget>[
                     Text(
-                      'Tell us about yourself!',
+                      'What is your weight?!',
                       style: kBigLabelTextStyle,
                     ),
                   ],
@@ -140,28 +139,6 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
                       ),
                       SizedBox(
                         width: 40,
-                      ),
-                      new RaisedButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedWeight = WeightType.Ibm;
-                            strWeight = 'IBM';
-                          });
-                        },
-                        child: Text(
-                          'IBM',
-                          style: TextStyle(
-                            color: selectedWeight == WeightType.Ibm
-                                ? Colors.white
-                                : Colors.purple,
-                          ),
-                        ),
-                        color: selectedWeight == WeightType.Ibm
-                            ? kActiveCardColor
-                            : kInActiveCardColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.transparent)),
                       ),
                     ],
                   ),
@@ -207,7 +184,7 @@ class _afterSingUp_4State extends State<afterSingUp_4> {
                     buttonTitle: 'Next',
                     click: () {
                       if (weight != null) {
-                        _getUserAuthEmail();
+                        _updateWeight();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

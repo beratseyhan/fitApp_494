@@ -5,6 +5,8 @@ import 'package:fitappson/more.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/add.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 
 class help extends StatefulWidget {
@@ -36,7 +38,9 @@ class HelpState extends State<help> {
         leading: new Column(
           children: <Widget>[
             new IconButton(icon: Image.asset('images/back_icon.png',),
-              onPressed: null,
+              onPressed: () => {
+                Navigator.pop(context),
+              },
               color: Colors.transparent,)
           ],
         ),
@@ -110,6 +114,14 @@ class HelpState extends State<help> {
                       color: Colors.black.withOpacity(0.85),
 
                     ),
+                  ),
+                  InkWell(
+                    child: Text("fitapp567@gmail.com"),
+                    onTap: () async {
+                      if (await canLaunch("fitapp567@gmail.com")) {
+                        await launch("fitapp567@gmail.com");
+                      }
+                    },
                   ),
 
                 ]

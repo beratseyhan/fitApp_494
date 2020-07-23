@@ -1,60 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitappson/notifier/hareketler_Notifier.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Login_Page.dart';
-import 'hareketlerDeneme.dart';
+//import 'hareketlerDeneme.dart';
 
-//class hark extends StatefulWidget {
-//  @override
-//  _harkState createState() => _harkState();
-//}
-//
-//class _harkState extends State<hark> {
-//  getExercise(ExerciseNotifier exerciseNotifier) async {
-//    QuerySnapshot snapshot =
-//        await Firestore.instance.collection('profile').getDocuments();
-//    List<Exercise> _exerciseList = [];
-//    snapshot.documents.forEach((document) {
-//      Exercise exercise = Exercise.fromMap(document.data);
-//      _exerciseList.add(exercise);
-//    });
-//    exerciseNotifier.exercisesList = _exerciseList;
-//  }
-//
-//  @override
-//  void initState() {
-//    ExerciseNotifier exerciseNotifier =
-//        Provider.of<ExerciseNotifier>(context, listen: false);
-//    getExercise(exerciseNotifier);
-//    super.initState();
-//  }
-//
-//  Widget build(BuildContext context) {
-//    @override
-//    ExerciseNotifier exerciseNotifier = Provider.of<ExerciseNotifier>(context);
-//    return Scaffold(
-//        appBar: AppBar(
-//          title: Text('asda1s'),
-//        ),
-//        body: ListView.separated(
-//          itemBuilder: (BuildContext context, int index) {
-//            return ListTile(
-//              title: Text(exerciseNotifier.exercisesList[index].name),
-//              subtitle: Text(exerciseNotifier.exercisesList[index].category),
-//            );
-//          },
-//          itemCount: exerciseNotifier.exercisesList.length,
-//          separatorBuilder: (BuildContext context, int index) {
-//            return Divider(
-//              color: Colors.purple,
-//            );
-//          },
-//        ));
-//  }
-//}
 class hareketler extends StatefulWidget {
   @override
   _hareketlerState createState() => _hareketlerState();
@@ -62,10 +14,10 @@ class hareketler extends StatefulWidget {
 
 class _hareketlerState extends State<hareketler> {
   Firestore _firestore = Firestore.instance;
-  List<DocumentSnapshot> _profile = [];
+  List<DocumentSnapshot> _exercise = [];
   bool loadingProfile = true;
   int _per_page = 15;
-  int score;
+
   int index;
   DocumentSnapshot _lastdocument;
   ScrollController _scrollController = ScrollController();
@@ -78,38 +30,12 @@ class _hareketlerState extends State<hareketler> {
     });
 //    .where('category', isEqualTo: 'low')   koşullu çagırma
     QuerySnapshot querySnapshot = await q.getDocuments();
-    _profile = querySnapshot.documents;
+    _exercise = querySnapshot.documents;
     _lastdocument = querySnapshot.documents[querySnapshot.documents.length - 1];
     setState(() {
       loadingProfile = false;
     });
   }
-
-//  getMoreProfile() async {
-//    if (_morePrdouctsAvaible == false) {
-//      print('noo');
-//    }
-//    if (_morePrdouctsAvaible == true) {
-//      print('yes');
-//    }
-//
-//    _morePrdouctsAvaible = true;
-//
-//    Query q = _firestore
-//        .collection('profile')
-//        .orderBy('score', descending: true)
-//        .startAfter([_lastdocument.data]).limit(_per_page);
-//
-//    QuerySnapshot querySnapshot = await q.getDocuments();
-//    if (querySnapshot.documents.length < _per_page) {
-//      _morePrdouctsAvaible = false;
-//    }
-//    _lastdocument = querySnapshot.documents[querySnapshot.documents.length - 1];
-//    _profile.addAll(querySnapshot.documents);
-//
-//    setState(() {});
-//    _gettingMoreProfile = false;
-//  }
 
   @override
   void initState() {
@@ -130,7 +56,7 @@ class _hareketlerState extends State<hareketler> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leader Bord'),
+        title: Text('EXERCISE'),
       ),
       body: loadingProfile == true
           ? Container(
@@ -157,13 +83,13 @@ class _hareketlerState extends State<hareketler> {
 //                      })),
 
           : Container(
-              child: _profile.length == 0
+              child: _exercise.length == 0
                   ? Center(
                       child: Text('No profile'),
                     )
                   : ListView.builder(
                       controller: _scrollController,
-                      itemCount: _profile.length,
+                      itemCount: _exercise.length,
                       itemBuilder: (BuildContext ctx, int index) {
                         int rank = index + 1;
                         addExercise() async {
@@ -173,7 +99,7 @@ class _hareketlerState extends State<hareketler> {
                                   .collection('profile')
                                   .document('$email')
                                   .updateData({
-                                'done': [_profile[index].data["name"], 'asd']
+                                '${(_exercise[index].data["name"])}Count': '15',
                               });
                               print('asd');
                             } catch (e) {
@@ -184,10 +110,10 @@ class _hareketlerState extends State<hareketler> {
 
                         return GestureDetector(
                           onTap: () {
-                            print(_profile[index].data["id"]);
-
-                            score = 5 * (_profile[index].data["id"]);
-                            print('$score');
+                            print(_exercise[index].data["name"]);
+//
+//                            score = 5 * (_profile[index].data["id"]);
+                            print('asd');
                             addExercise();
                           },
                           child: Card(
@@ -201,7 +127,7 @@ class _hareketlerState extends State<hareketler> {
                                 children: <Widget>[
                                   ListTile(
                                     title: Text(
-                                      (_profile[index].data["name"]),
+                                      (_exercise[index].data["name"]),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20.0,
@@ -221,9 +147,9 @@ class _hareketlerState extends State<hareketler> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      'score :' +
-                                          (_profile[index]
-                                              .data["score"]
+                                      'set :' +
+                                          (_exercise[index]
+                                              .data["set"]
                                               .toString()),
                                       style: TextStyle(
                                           color: Colors.white,

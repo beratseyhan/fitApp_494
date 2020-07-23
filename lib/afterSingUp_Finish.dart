@@ -1,10 +1,16 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'afterSingUp_6.dart';
-import 'homePage.dart';
+import 'home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'contants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+
 
 class afterSingUp_Finish extends StatefulWidget {
   @override
@@ -12,6 +18,8 @@ class afterSingUp_Finish extends StatefulWidget {
 }
 
 class _afterSingUp_FinishState extends State<afterSingUp_Finish> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +36,7 @@ class _afterSingUp_FinishState extends State<afterSingUp_Finish> {
                         my_iconbutton(
                           iconImageName: 'images/back_icon.png',
                           click: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => afterSingUp_6()),
-                            );
+                            Navigator.pop(context);
                           },
                         ),
                       ],
@@ -51,233 +55,265 @@ class _afterSingUp_FinishState extends State<afterSingUp_Finish> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Container(
-                            child: Center(
-                              child: AutoSizeText(
-                                'I exercise occasionally, but I want to improve myself by doing more',
-                                textAlign: TextAlign.center,
-                                style: kNormalLabelTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 4,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            height: MediaQuery.of(context).size.height * 0.14,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                        ],
-                      ),
-                    ],
+                  alignment: Alignment.center ,
+                  width:350,
+                  height: 370,
+                  margin: const EdgeInsets.all(5.0),
+                  padding: EdgeInsets.all(6.0),
+                  child:ListView.separated(
+                    itemBuilder: (context, index) {
+                      return (
+                          Column(
+                              children: <Widget>[
+
+                                Text(
+                                  "$durum",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.57),
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Monday ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$monday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Tuesday ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$tuesday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Wednesday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$wednesday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Thursday ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$thursday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Friday      ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$friday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Saturday ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$saturday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.white,
+                                  elevation: 8.0,
+                                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0,
+                                      16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),),
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Text("Sunday ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.purple.withOpacity(0.67),
+                                          ),
+                                        ),
+                                        title: Text("$sunday",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontFamily: 'Rajdhani',
+                                            color: Colors.black.withOpacity(0.67),
+                                          ),
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]
+                          )
+                      );
+                    },separatorBuilder: (context, index,) => Divider(),
+                    itemCount: 1,
                   ),
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  width: MediaQuery.of(context).size.width * 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.05,
-                      ),
-                      Stack(
-                        overflow: Overflow.visible,
-//                        alignment: Alignment.bottomRight,
-                        alignment: Alignment(5, 8),
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(1000),
-                            width: MediaQuery.of(context).size.width * 1 / 2.2,
-                            height:
-                                MediaQuery.of(context).size.height * 0.3 / 2.7,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff7c94b6),
-                              image: const DecorationImage(
-                                image: AssetImage('images/finish1.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1 / 2.8,
-                            height:
-                                MediaQuery.of(context).size.height * 0.3 / 3.2,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff7c94b6),
-                              image: const DecorationImage(
-                                image: AssetImage('images/finish0.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1 / 3,
-                            height:
-                                MediaQuery.of(context).size.height * 0.3 / 3.6,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff7c94b6),
-                              image: const DecorationImage(
-                                image: AssetImage('images/finish3.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1 / 3.3,
-                            height:
-                                MediaQuery.of(context).size.height * 0.3 / 4,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff7c94b6),
-                              image: const DecorationImage(
-                                image: AssetImage('images/finish4.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1 / 3.7,
-                            height:
-                                MediaQuery.of(context).size.height * 0.3 / 4.5,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff7c94b6),
-                              image: const DecorationImage(
-                                image: AssetImage('images/finish1.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-//                SizedBox(
-//                  height: MediaQuery.of(context).size.height * 0.01,
-//                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            child: AutoSizeText(
-                              'Daily Calories',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          Container(
-                            child: AutoSizeText(
-                              '1300 KCAL',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            child: AutoSizeText(
-                              'Trainings',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          Container(
-                            child: AutoSizeText(
-                              '2 / WEEK',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            child: AutoSizeText(
-                              'Exercise Time',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          Container(
-                            child: AutoSizeText(
-                              '20 SEC',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            child: AutoSizeText(
-                              'Goal',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          Container(
-                            child: AutoSizeText(
-                              '52 KG',
-                              textAlign: TextAlign.start,
-                              style: kNormalLabelTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+
+
                 Container(
                   child: Expanded(
                     child: Column(
@@ -289,9 +325,10 @@ class _afterSingUp_FinishState extends State<afterSingUp_Finish> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => homePage()),
+                                    builder: (context) => home()),
                               );
                             },
+
                             buttonColor: kActiveCardColor)
                       ],
                     ),

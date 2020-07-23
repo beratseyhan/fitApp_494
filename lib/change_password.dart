@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitappson/s_change_password.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/add.dart';
 import 'package:fitappson/more.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -16,7 +18,16 @@ class change_password extends StatefulWidget {
 }
 
 class _change_passwordState extends State<change_password> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  void mail() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uemail = user.email;
+    print(uemail);
+  }
+
   int _selectedIndex = 0;
+  final myController = TextEditingController();
+  final emailEditingController = TextEditingController();
   final List <Widget> _children= [
 
 
@@ -33,33 +44,24 @@ class _change_passwordState extends State<change_password> {
 
 
   Widget build(BuildContext context) {
+
     return Scaffold(
 
 
-      resizeToAvoidBottomPadding: false,
-      backgroundColor: Color(0XFFE5E5E5),
-      appBar: new AppBar(
-        backgroundColor: Color(0XFFE5E5E5),
-        elevation: 0,
-        leading: new Column(
-          children: <Widget>[
-            new IconButton(icon: Image.asset('images/back_icon.png',),
-              onPressed: null,
-              color: Colors.transparent,)
-          ],
-        ),
-      ),
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.transparent,
       body: Center(
 
         child: Container(
           alignment: Alignment.topCenter,
-          width:303,
-          height: 380,
+          width:600,
+          height: 760,
           margin: const EdgeInsets.all(10.0),
           padding: EdgeInsets.all(20.0),
           decoration: new BoxDecoration(
-            color: Color.fromRGBO(255, 255, 255, 0.88),
-            borderRadius: BorderRadius.circular(10.0),
+              color: Color.fromRGBO(255, 255, 255, 0.88),
+              borderRadius: BorderRadius.circular(10.0),
+              image: new DecorationImage(image: AssetImage('images/forget4.jpg'),fit: BoxFit.fill)
           ),
           child: Column(
 
@@ -68,36 +70,35 @@ class _change_passwordState extends State<change_password> {
 
             children: <Widget>[
               Text(
-                "               Change your password",
+                "Reset Your Password",
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 35,
                   fontFamily: 'Rajdhani',
                   color: Colors.black.withOpacity(0.67),
                 ),
               ),
-              Spacer(flex: 3),
-
+              Spacer(flex: 2),
               Text(
 
-                "  Current Password:",
+                "  Enter your E-Mail:",
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.normal,
-                  fontSize: 14,
+                style: TextStyle(fontWeight: FontWeight.bold,
+                  fontSize: 20,
                   fontFamily: 'Rajdhani',
-                  color: Colors.black.withOpacity(0.67),
+                  color: Colors.black,
                 ),
               ),
               TextField(
-
-                obscureText: true,
-                style: TextStyle(color: Colors.grey, fontSize: 14,),
+                controller: emailEditingController,
+                obscureText: false,
+                style: TextStyle(color: Colors.black, fontSize: 18,),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical:10.0,horizontal: 20.0),
-                  hintStyle: TextStyle(color: Colors.grey,
-                    fontSize: 1.0,
+                  hintStyle: TextStyle(color: Colors.black,
+                    fontSize: 5.0,
                     fontFamily: 'Rajdhani',
                   ),
                   border: OutlineInputBorder(
@@ -115,89 +116,13 @@ class _change_passwordState extends State<change_password> {
                   ),
                 ),
               ),
-              Spacer(flex: 1),
-
-              Text(
-                "  New Password:",
-                textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                  fontFamily: 'Rajdhani',
-                  color: Colors.black.withOpacity(0.67),
-                ),
-              ),
-              TextField(
-                obscureText: true,
-                style: TextStyle(color: Colors.grey, fontSize: 14,),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical:10.0,horizontal: 20.0),
-                  hintStyle: TextStyle(color: Colors.grey,
-                    fontSize: 1.0,
-                    fontFamily: 'Rajdhani',
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Color.fromRGBO(137, 55, 150, 100),
-                        width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromRGBO(137, 55, 150, 100),
-                  ),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                ),
-              ),
-              Spacer(flex: 1),
-
-              Text(
-                "  Confrim New Password:",
-                textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                  fontFamily: 'Rajdhani',
-                  color: Colors.black.withOpacity(0.67),
-                ),
-              ),
-              TextField(
-                obscureText: true,
-                style: TextStyle(color: Colors.grey, fontSize: 14,),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical:10.0,horizontal: 20.0),
-
-                  hintStyle: TextStyle(color: Colors.grey,
-                    fontSize: 1.0,
-                    fontFamily: 'Rajdhani',
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Color.fromRGBO(137, 55, 150, 100),
-                        width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromRGBO(137, 55, 150, 100),
-                  ),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                ),
-              ),
-
-              Spacer(flex: 3),
-
+              //Spacer(flex: 1),
               RaisedButton(
                 onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> s_change_password()),
-                  ),
+                  auth.sendPasswordResetEmail(email: "${emailEditingController.text}"),
                 },
                 color: Color.fromRGBO(40, 132, 218, 100),
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
                 elevation: 5.0,
                 splashColor: Colors.grey,
                 animationDuration: Duration(seconds: 2),
@@ -208,93 +133,19 @@ class _change_passwordState extends State<change_password> {
                   width: 250,
                   height: 28,
 
-                  child: Text("Change my password",
-                    overflow: TextOverflow.ellipsis,
+                  child: Text(" Sent reset e-mail",
+                    // overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.normal,
+                    style: TextStyle(fontWeight: FontWeight.bold,
                       fontFamily: 'Rajdhani',
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
+              Spacer(flex: 2),
             ],
           ),
-        ),
-      ),
-
-      bottomNavigationBar:Theme(
-        data:Theme.of(context).copyWith(canvasColor: Color.fromRGBO(74, 70, 70, 80),),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          onTap: changePage,
-          iconSize: 35,
-
-          fixedColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset('images/home.png',),
-                onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> home()),
-
-                  ),
-                },
-                color: Colors.transparent,),
-              title: SizedBox(
-                height: 0,
-              ),
-            ),
-
-            BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset('images/menu.png',),
-                onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> more()),
-                  ),
-                },
-                color: Colors.transparent,),
-              title: SizedBox(
-                height: 0,
-              ),
-            ),
-
-            BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset('images/plus.png',width:50,height:50,),
-                onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> add()),
-
-                  ),
-                },
-                color: Colors.transparent,),
-              title: SizedBox(
-                height: 0,
-              ),
-            ),
-
-            BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset('images/dumbbell.png',),
-                onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> exercises()),
-                  ),
-                },
-                color: Colors.transparent,),
-              title: SizedBox(
-                height: 0,
-              ),
-            ),
-
-            BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset('images/settings_active.png',),
-                onPressed: () => {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> settings()),
-                  ),
-                },
-                color: Colors.transparent,),
-              title: SizedBox(
-                height: 0,
-              ),
-            ),
-          ],
         ),
       ),
     );

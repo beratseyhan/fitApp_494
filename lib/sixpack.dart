@@ -7,6 +7,16 @@ import 'package:fitappson/add.dart';
 import 'package:fitappson/exercises.dart';
 import 'package:fitappson/settings.dart';
 import 'package:fitappson/more.dart';
+import 'package:fitappson/belly_1.dart';
+import 'package:fitappson/belly_2.dart';
+import 'package:fitappson/belly_3.dart';
+import 'package:fitappson/belly_4.dart';
+import 'package:fitappson/belly_5.dart';
+import 'package:fitappson/belly_6.dart';
+import 'package:fitappson/belly_7.dart';
+import 'package:fitappson/belly_8.dart';
+import 'package:fitappson/belly_9.dart';
+import 'package:fitappson/belly_10.dart';
 
 class sixpack extends StatefulWidget {
   @override
@@ -55,8 +65,10 @@ class _sixpackState extends State<sixpack> {
         leading: new Column(
           children: <Widget>[
             new IconButton(icon: Image.asset('images/back_icon.png',),
-              onPressed: null,
-              color: Colors.transparent,)
+              onPressed: () => {
+                Navigator.pop(context),
+              },
+            )
           ],
         ),
         title: new Column(
@@ -113,23 +125,22 @@ class _sixpackState extends State<sixpack> {
 
 
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 16, right:16),
-              color: Color(0XFFE5E5E5),
-              child: ListView.separated(
-                itemBuilder: (context, index){
-                  return Column(
+            child: ListView.separated(
+              itemBuilder: (context, index){
+                return (Container(
+                  padding: EdgeInsets.only(left: 16, right:16),
+                  color: Color(0XFFE5E5E5),
+                  child:Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height:10,),
                       Row(
-
                         children: <Widget>[
                           Container(
 
                             width: 90,
                             height:90,
-                            child: ClipOval(child: Image.asset("images/sixpack/${index+1}.JPG",fit: BoxFit.cover, ),
+                            child: ClipOval(child: Image.asset("images/sixpack/1.JPG",fit: BoxFit.cover, ),
                             ),
                           ),
                           Expanded(
@@ -140,9 +151,9 @@ class _sixpackState extends State<sixpack> {
                                   onTap: (){
                                     Navigator.push(context,
                                       MaterialPageRoute(
-                                          builder: (context) =>home()),
+                                          builder: (context) =>belly_1()),
                                     );
-                                  }, child: Text(litems[index],
+                                  }, child: Text("     Cross Crunches",
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -152,23 +163,385 @@ class _sixpackState extends State<sixpack> {
                                   ),
                                 ),
                                 ),
-
                               ],
                             ),
                           ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_1()),
+                              ),
+                            },)
+                        ], ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
 
-                          IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey),
-
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/2.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_2()),
+                                    );
+                                  }, child: Text("     Crunches",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_2()),
+                              ),
+                            },)
                         ],
                       ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/3.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_3()),
+                                    );
+                                  }, child: Text("     High Knees",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_3()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/4.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_4()),
+                                    );
+                                  }, child: Text("  Knee to Elbow Crunches",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_4()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/5.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_5()),
+                                    );
+                                  }, child: Text("     Leg Raises",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_5()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/6.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_6()),
+                                    );
+                                  }, child: Text("     Marching Steps",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_6()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/7.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_7()),
+                                    );
+                                  }, child: Text("     Side Jack Knives",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_7()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/8.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_8()),
+                                    );
+                                  }, child: Text("     Side Plank Rotation",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_8()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/9.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_9()),
+                                    );
+                                  }, child: Text("     Sit Up",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_9()),
+                              ),
+                            },)
+                        ],
+                      ),
+                      const SizedBox(height:10,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+
+                            width: 90,
+                            height:90,
+                            child: ClipOval(child: Image.asset("images/sixpack/10.JPG",fit: BoxFit.cover, ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>belly_10()),
+                                    );
+                                  }, child: Text("     Sitting Twist",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: 'Rajdhani',
+                                    color: Colors.black.withOpacity(0.80),
+                                  ),
+                                ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          new   IconButton(icon: Icon(Icons.arrow_right), color: Colors.grey,
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> belly_10()),
+                              ),
+                            },)
+                        ],
+                      ),
+
                     ],
-                  );
-                },
-                separatorBuilder: (context, index,) => Divider(),
-                itemCount: litems.length,
-              ),
+                  ),
+                )
+                );
+              },
+              separatorBuilder: (context, index,) => Divider(),
+              itemCount: 1,
             ),
-          )
+          ),
 
 
 
@@ -176,9 +549,8 @@ class _sixpackState extends State<sixpack> {
       ),
 
 
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Color.fromRGBO(74, 70, 70, 80),),
+      bottomNavigationBar:Theme(
+        data:Theme.of(context).copyWith(canvasColor: Color.fromRGBO(74, 70, 70, 80),),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
@@ -189,10 +561,8 @@ class _sixpackState extends State<sixpack> {
           items: [
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/home.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => home()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> home()),
 
                   ),
                 },
@@ -204,10 +574,8 @@ class _sixpackState extends State<sixpack> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/menu.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => more()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> more()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -217,12 +585,9 @@ class _sixpackState extends State<sixpack> {
             ),
 
             BottomNavigationBarItem(
-              icon: IconButton(icon: Image.asset(
-                'images/plus.png', width: 50, height: 50,),
-                onPressed: () =>
-                {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => add()),
+              icon: IconButton(icon: Image.asset('images/plus.png',width:50,height:50,),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> add()),
 
                   ),
                 },
@@ -234,10 +599,8 @@ class _sixpackState extends State<sixpack> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/dumbbell.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => exercises()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> exercises()),
                   ),
                 },
                 color: Colors.transparent,),
@@ -248,10 +611,8 @@ class _sixpackState extends State<sixpack> {
 
             BottomNavigationBarItem(
               icon: IconButton(icon: Image.asset('images/settings_active.png',),
-                onPressed: () =>
-                {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => settings()),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> settings()),
                   ),
                 },
                 color: Colors.transparent,),

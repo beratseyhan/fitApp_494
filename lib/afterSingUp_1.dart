@@ -25,7 +25,7 @@ class _afterSingUp_1State extends State<afterSingUp_1> {
 
   String _userEmail;
 
-  _getUserAuthEmail() async {
+  _updateData() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
       _userEmail = user.email;
@@ -41,72 +41,7 @@ class _afterSingUp_1State extends State<afterSingUp_1> {
       }
     });
   }
-//  _getUserAuthEmail() async {
-//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-//    setState(() {
-//      _userEmail = user.email;
-//      print('object deneme $email');
-//
-//      try {
-//        databaseReference
-//            .collection('profile')
-//            .document('$_userEmail')
-//            .updateData({
-//          'activities': {
-//            'Walking': 'asdda',
-//            'ShoulderExercises': 'sd',
-//            'ArmExercises': '1111',
-//            'SixPackExercises': '22222',
-//            'LegExercises': '4444',
-//            'ChestExercises': '7777777',
-//            'BackExercises': '10010231'
-//          }
-//        });
-//      } catch (e) {
-//        print(e.toString());
-//      }
-//    });
-//  }
-
-  void updateData() {
-    try {
-      databaseReference
-          .collection('profile')
-          .document('$email')
-          .updateData({'gender': '$selectedGender'});
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-//  void createRecord() async {
-//    await databaseReference
-//        .collection("profile")
-//        .document('beratsyhnn@gmail.com')
-//        .setData({
-//      'gender': '$selectedGender',
-//    });
-//
-//    DocumentReference ref = await databaseReference.collection("gender").add({
-//      'gender': 'Flutter in Action',
-//    });
-//    print(ref.documentID);
-//  }
-
-//  FirebaseUser loggedInUser;
-//  final _auth = FirebaseAuth.instance;
-
-//  void getCurrentUser() async {
-//    try {
-//      final user = await _auth.currentUser();
-//      if (user != null) {
-//        loggedInUser = user;
-//        print('$loggedInUser sadasdad');
-//      }
-//    } catch (e) {
-//      print(e);
-//    }
-//  }
+//hangi kullanıcı ise ona seçilen gender i yüklüyor
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,17 +105,7 @@ class _afterSingUp_1State extends State<afterSingUp_1> {
                   WelcomePageButton(
                       buttonTitle: 'NEXT',
                       click: () {
-//                        _fireStore.collection('profile').add({
-//                          'gender': selectedGender.toString(),
-//                        });
-
-//
-//
-
-                        //  updateData();
-//                        updateData();
-
-                        _getUserAuthEmail();
+                        _updateData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

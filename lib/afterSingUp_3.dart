@@ -13,6 +13,7 @@ class afterSingUp_3 extends StatefulWidget {
   _afterSingUp_3State createState() => _afterSingUp_3State();
 }
 
+int height;
 enum DistanceType {
   cm,
   fit,
@@ -22,7 +23,6 @@ DistanceType selectedDistance = DistanceType.cm;
 String str = 'Cm';
 
 class _afterSingUp_3State extends State<afterSingUp_3> {
-  int height;
   @override
 //
 
@@ -49,7 +49,7 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
     );
   }
 
-  _getUserAuthEmail() async {
+  _updateHeight() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
       _userEmail = user.email;
@@ -58,7 +58,7 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
         databaseReference
             .collection('profile')
             .document('$_userEmail')
-            .updateData({'height': '$height'});
+            .updateData({'height': height});
       } catch (e) {
         print(e.toString());
       }
@@ -98,7 +98,7 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
                   textBaseline: TextBaseline.ideographic,
                   children: <Widget>[
                     Text(
-                      'Tell us about yourself!',
+                      'What is your height?',
                       style: kBigLabelTextStyle,
                     ),
                   ],
@@ -139,11 +139,11 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
                         onPressed: () {
                           setState(() {
                             selectedDistance = DistanceType.fit;
-                            str = 'Fit';
+                            str = 'Feet';
                           });
                         },
                         child: Text(
-                          'Fit',
+                          'Feet',
                           style: TextStyle(
                             color: selectedDistance == DistanceType.fit
                                 ? Colors.white
@@ -202,7 +202,7 @@ class _afterSingUp_3State extends State<afterSingUp_3> {
                     buttonTitle: 'Next',
                     click: () {
                       if (height != null) {
-                        _getUserAuthEmail();
+                        _updateHeight();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
